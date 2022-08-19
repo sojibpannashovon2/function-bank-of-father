@@ -1,27 +1,5 @@
 
 
-function getInputFieldById(inputFieldId) {
-
-    const inputField = document.getElementById(inputFieldId);
-    const inputFieldString = inputField.value;
-
-    const inputFieldAmount = parseFloat(inputFieldString);
-
-    inputField.value = '';
-
-    return inputFieldAmount;
-}
-
-function getElementByValueById(elementId) {
-    const totalElement = document.getElementById(elementId);
-
-    const elementString = totalElement.innerText;
-
-    const elementAmount = parseFloat(elementString);
-
-    return elementAmount;
-
-}
 
 document.getElementById('btn-deposit').addEventListener('click', function () {
 
@@ -29,10 +7,31 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
 
     const newDepositAmount = getInputFieldById('deposit-field');
 
+    //get previous deposit by id
 
-    const currentTotalDeposit = getElementByValueById('total-deposit') + newDepositAmount;
 
-    console.log(currentTotalDeposit);
+    const previousTotalDeposit = getElementByValueById('total-deposit');
+
+    //Calculate the new deposit total
+
+    const currentDepositAmount = previousTotalDeposit + newDepositAmount;
+
+    // console.log(currentDepositAmount);
+
+    setTextElementValueById('total-deposit', currentDepositAmount)
+
+    // get previous balance total
+
+    const previoustotalBalance = getElementByValueById('total-balance');
+
+
+    // calculate the current balance total 
+
+    const currentTotalBalance = previoustotalBalance + newDepositAmount;
+
+    setTextElementValueById('total-balance', currentTotalBalance);
+
+
 
 
 })
